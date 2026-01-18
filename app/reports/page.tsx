@@ -135,9 +135,9 @@ export default function ReportsPage() {
 
       {/* Milestones */}
       {report && report.milestones.achieved.length > 0 && (
-        <Card className="border-green-200 bg-green-50/50">
+        <Card className="border-green-800/50 bg-green-950/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-green-700">
+            <CardTitle className="flex items-center gap-2 text-green-400">
               <Award className="h-5 w-5" />
               Milestones Achieved!
             </CardTitle>
@@ -145,7 +145,7 @@ export default function ReportsPage() {
           <CardContent>
             <ul className="space-y-2">
               {report.milestones.achieved.map((milestone, idx) => (
-                <li key={idx} className="flex items-center gap-2 text-green-700">
+                <li key={idx} className="flex items-center gap-2 text-green-300">
                   <Award className="h-4 w-4" />
                   <span className="font-medium">{milestone}</span>
                 </li>

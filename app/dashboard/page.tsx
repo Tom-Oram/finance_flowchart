@@ -167,7 +167,7 @@ export default function DashboardPage() {
               if (!targetDebt) {
                 return (
                   <p className="text-sm text-muted-foreground">
-                    No debts to prioritize at this time.
+                    No debts to prioritise at this time.
                   </p>
                 )
               }
@@ -259,7 +259,7 @@ export default function DashboardPage() {
                   <div className="text-xs text-muted-foreground">
                     <p>
                       <strong>Strategy:</strong> {debtStrategy === 'avalanche'
-                        ? 'Avalanche pays debts by highest APR first, minimizing total interest paid.'
+                        ? 'Avalanche pays debts by highest APR first, minimising total interest paid.'
                         : 'Snowball pays smallest debts first, providing psychological wins and motivation.'}
                     </p>
                   </div>
@@ -334,12 +334,12 @@ export default function DashboardPage() {
                   className={cn(
                     "flex gap-4 p-4 rounded-lg border transition-colors",
                     isCurrent && "border-primary bg-primary/5",
-                    isCompleted && !isCurrent && "border-green-200 bg-green-50/50"
+                    isCompleted && !isCurrent && "border-green-800/50 bg-green-950/20"
                   )}
                 >
                   <div className="flex-shrink-0">
                     {isCompleted ? (
-                      <CheckCircle2 className="h-6 w-6 text-green-600" />
+                      <CheckCircle2 className="h-6 w-6 text-green-400" />
                     ) : isCurrent ? (
                       <AlertCircle className="h-6 w-6 text-primary" />
                     ) : (

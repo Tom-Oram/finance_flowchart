@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AnimatedCard } from '@/components/AnimatedCard'
@@ -7,6 +8,7 @@ import { CardContent, CardDescription, CardHeader, CardTitle } from '@/component
 import { ExternalLink, AlertTriangle, CheckCircle2, TrendingUp, PiggyBank, Shield, Zap, Target } from 'lucide-react'
 import Link from 'next/link'
 import { useFinancial } from '@/contexts/FinancialContext'
+import { OnboardingWizard } from '@/components/OnboardingWizard'
 
 const EXAMPLE_DATA = {
   currency: 'GBP' as const,
@@ -89,6 +91,7 @@ const EXAMPLE_DATA = {
 
 export default function HomePage() {
   const { importState } = useFinancial()
+  const [wizardOpen, setWizardOpen] = useState(false)
 
   const loadExampleData = () => {
     importState(EXAMPLE_DATA)
@@ -129,24 +132,27 @@ export default function HomePage() {
           build emergency funds, and plan your financial future.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
-          <Link href="/dashboard">
-            <Button size="lg" className="gap-2 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all">
-              <TrendingUp className="h-5 w-5" />
-              Get Started Free
-            </Button>
-          </Link>
+          <Button
+            size="lg"
+            className="gap-2 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
+            onClick={() => setWizardOpen(true)}
+          >
+            <TrendingUp className="h-5 w-5" />
+            Get Started Free
+          </Button>
           <Button size="lg" variant="outline" onClick={loadExampleData} className="text-lg px-8 py-6">
             Try Example Data
           </Button>
         </div>
+        <OnboardingWizard open={wizardOpen} onClose={() => setWizardOpen(false)} />
       </div>
 
       {/* Disclaimer */}
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-700" style={{ animationDelay: '100ms' }}>
-        <Alert className="bg-amber-50 border-amber-200">
-          <AlertTriangle className="h-4 w-4 text-amber-600" />
-          <AlertTitle className="text-amber-900">Important Disclaimer</AlertTitle>
-          <AlertDescription className="text-amber-800">
+        <Alert className="bg-amber-950/30 border-amber-800/50">
+          <AlertTriangle className="h-4 w-4 text-amber-400" />
+          <AlertTitle className="text-amber-300">Important Disclaimer</AlertTitle>
+          <AlertDescription className="text-amber-200/80">
             This is <strong>not financial advice</strong>. The information provided is for
             educational purposes only. Always do your own research and consider seeking
             professional advice for your specific circumstances.
@@ -184,15 +190,15 @@ export default function HomePage() {
             <ul className="space-y-3">
               {[
                 'Shows where you are on the UKPF flowchart',
-                'Provides personalized next steps based on your finances',
+                'Provides personalised next steps based on your finances',
                 'Compares debt payoff strategies (Avalanche vs Snowball)',
                 'Calculates timelines for becoming debt-free',
                 'Shows total interest saved with different approaches',
                 'Tracks emergency fund progress month-over-month',
               ].map((item, idx) => (
                 <li key={idx} className="flex gap-3 items-start">
-                  <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <div className="h-6 w-6 rounded-full bg-green-950/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <CheckCircle2 className="h-4 w-4 text-green-400" />
                   </div>
                   <span className="text-sm">{item}</span>
                 </li>
@@ -219,8 +225,8 @@ export default function HomePage() {
                 'Built with open banking standards in mind',
               ].map((item, idx) => (
                 <li key={idx} className="flex gap-3 items-start">
-                  <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Shield className="h-4 w-4 text-blue-600" />
+                  <div className="h-6 w-6 rounded-full bg-blue-950/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Shield className="h-4 w-4 text-blue-400" />
                   </div>
                   <span className="text-sm">{item}</span>
                 </li>
@@ -241,7 +247,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm">
-              The UKPF flowchart is a decision tree that helps you prioritize your financial
+              The UKPF flowchart is a decision tree that helps you prioritise your financial
               goals. It guides you through essential steps like dealing with problem debt,
               building emergency funds, clearing expensive debts, and eventually investing for
               the long term.
@@ -280,12 +286,14 @@ export default function HomePage() {
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Start your financial journey today. Track your progress, compare strategies, and achieve your goals.
         </p>
-        <Link href="/dashboard">
-          <Button size="lg" className="gap-2 text-lg px-8 py-6">
-            Start Your Journey
-            <TrendingUp className="h-5 w-5" />
-          </Button>
-        </Link>
+        <Button
+          size="lg"
+          className="gap-2 text-lg px-8 py-6"
+          onClick={() => setWizardOpen(true)}
+        >
+          Start Your Journey
+          <TrendingUp className="h-5 w-5" />
+        </Button>
       </div>
     </div>
   )

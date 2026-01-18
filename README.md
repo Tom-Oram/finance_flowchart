@@ -1,4 +1,4 @@
-# UK Personal Finance Flowchart App
+# Wealthcheck
 
 An interactive web application that helps UK users map their personal finances onto the [UKPF Flowchart](https://ukpersonal.finance/flowchart/) journey. Track debts, build emergency funds, and plan your financial future with visual debt payoff comparisons and timelines.
 
@@ -10,7 +10,7 @@ An interactive web application that helps UK users map their personal finances o
 
 - Always do your own research
 - Consider seeking advice from a qualified financial advisor for your specific circumstances
-- This tool provides general guidance based on community-created flowcharts, not personalized financial advice
+- This tool provides general guidance based on community-created flowcharts, not personalised financial advice
 
 ### Problem Debt Support
 

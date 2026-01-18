@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { Home, BarChart3, CreditCard, TrendingUp, Wallet, Settings, LineChart } from 'lucide-react'
+import { Home, BarChart3, CreditCard, TrendingUp, Wallet, Settings, LineChart, BadgeCheck } from 'lucide-react'
 
 const NAV_ITEMS = [
   { href: '/', label: 'Home', icon: Home },
@@ -23,8 +23,8 @@ export default function Navigation() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <BarChart3 className="h-6 w-6 text-primary" />
-            <span className="font-semibold text-lg hidden sm:inline">UKPF Flowchart</span>
+            <BadgeCheck className="h-6 w-6 text-primary" />
+            <span className="font-semibold text-lg hidden sm:inline">Wealthcheck</span>
           </div>
           <div className="flex items-center gap-1">
             {NAV_ITEMS.map((item) => {

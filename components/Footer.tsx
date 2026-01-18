@@ -15,7 +15,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-primary hover:underline inline-flex items-center gap-1"
               >
-                UKPF Flowchart
+                Wealthcheck
                 <ExternalLink className="h-3 w-3" />
               </a>
               , published under{' '}

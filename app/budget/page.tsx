@@ -151,15 +151,17 @@ export default function BudgetPage() {
       </div>
 
       <Tabs defaultValue="income">
-        <TabsList className="grid w-full grid-cols-7">
-          <TabsTrigger value="income">Income</TabsTrigger>
-          <TabsTrigger value="outgoings">Outgoings</TabsTrigger>
-          <TabsTrigger value="annual">Annual Costs</TabsTrigger>
-          <TabsTrigger value="savings">Savings</TabsTrigger>
-          <TabsTrigger value="pension">Pension</TabsTrigger>
-          <TabsTrigger value="situation">Situation</TabsTrigger>
-          <TabsTrigger value="tax">Tax</TabsTrigger>
-        </TabsList>
+        <div className="w-full overflow-x-auto pb-2 scrollbar-hide">
+          <TabsList className="inline-flex w-auto min-w-full md:grid md:w-full md:grid-cols-7">
+            <TabsTrigger value="income" className="flex-shrink-0">Income</TabsTrigger>
+            <TabsTrigger value="outgoings" className="flex-shrink-0">Outgoings</TabsTrigger>
+            <TabsTrigger value="annual" className="flex-shrink-0">Annual Costs</TabsTrigger>
+            <TabsTrigger value="savings" className="flex-shrink-0">Savings</TabsTrigger>
+            <TabsTrigger value="pension" className="flex-shrink-0">Pension</TabsTrigger>
+            <TabsTrigger value="situation" className="flex-shrink-0">Situation</TabsTrigger>
+            <TabsTrigger value="tax" className="flex-shrink-0">Tax</TabsTrigger>
+          </TabsList>
+        </div>
 
         <TabsContent value="income">
           <Card>

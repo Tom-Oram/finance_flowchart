@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'UK Personal Finance Flowchart App',
+  title: 'Wealthcheck - UK Personal Finance Tracker',
   description:
     'Interactive tool to map your personal finances onto the UKPF flowchart journey',
 }

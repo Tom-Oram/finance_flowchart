@@ -90,7 +90,7 @@ export function calculateTotalDebt(debts: Debt[]): number {
 - Shows recommended debt to focus extra payments on
 
 **Strategy Logic:**
-- Avalanche: Highest APR first (minimizes total interest)
+- Avalanche: Highest APR first (minimises total interest)
 - Snowball: Smallest balance first (psychological wins)
 - User can switch between strategies at any time
 - Note: This is a recommendation tool, not a flowchart override
@@ -115,7 +115,7 @@ export function calculateTotalDebt(debts: Debt[]): number {
 **Behavior:**
 - **Avalanche**: Targets Credit Card A (highest APR at 11%)
 - **Snowball**: Targets Credit Card B (smallest balance at £500)
-- User can switch strategies to see which debt would be prioritized
+- User can switch strategies to see which debt would be prioritised
 
 ## Build Status
 

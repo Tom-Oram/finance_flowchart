@@ -181,7 +181,7 @@ const FLOWCHART_STEPS: FlowchartStep[] = [
         actions.push(
           'Use the Debts section to model paying down high-interest debts (>10% APR)'
         )
-        actions.push('Consider the avalanche method to minimize interest')
+        actions.push('Consider the avalanche method to minimise interest')
         actions.push(
           'Look into balance transfer or consolidation options if available'
         )

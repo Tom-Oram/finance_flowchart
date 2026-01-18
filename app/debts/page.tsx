@@ -610,7 +610,7 @@ export default function DebtsPage() {
                 <Card className="border-blue-200">
                   <CardHeader>
                     <CardTitle className="text-blue-700">Avalanche Method</CardTitle>
-                    <CardDescription>Highest APR first (minimizes interest)</CardDescription>
+                    <CardDescription>Highest APR first (minimises interest)</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="flex justify-between">

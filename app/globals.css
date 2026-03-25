@@ -4,54 +4,61 @@
 
 @layer base {
   :root {
-    /* Dark professional finance theme - Navy & Gold */
-    --background: 220 25% 8%;
-    --foreground: 210 20% 95%;
-    --card: 220 20% 12%;
-    --card-foreground: 210 20% 95%;
-    --popover: 220 20% 12%;
-    --popover-foreground: 210 20% 95%;
-    --primary: 45 90% 60%;
-    --primary-foreground: 220 25% 8%;
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 210 20% 95%;
-    --muted: 220 15% 18%;
-    --muted-foreground: 210 10% 65%;
-    --accent: 200 80% 45%;
-    --accent-foreground: 210 20% 95%;
+    /* Premium dark finance theme - Deep Navy & Cool Blue */
+    --background: 222 47% 5%;
+    --foreground: 210 40% 96%;
+    --card: 222 35% 8%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 35% 8%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 213 94% 58%;
+    --primary-foreground: 222 47% 5%;
+    --secondary: 222 25% 14%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 25% 14%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 222 25% 16%;
+    --accent-foreground: 210 40% 96%;
     --destructive: 0 72% 55%;
-    --destructive-foreground: 210 20% 95%;
-    --border: 220 15% 20%;
-    --input: 220 15% 18%;
-    --ring: 45 90% 60%;
-    --radius: 0.5rem;
+    --destructive-foreground: 210 40% 96%;
+    --border: 222 20% 14%;
+    --input: 222 25% 12%;
+    --ring: 213 94% 58%;
+    --radius: 0.75rem;
 
-    /* Custom finance colors */
-    --success: 142 76% 36%;
+    /* Finance semantic colors */
+    --success: 152 69% 40%;
+    --success-foreground: 152 69% 92%;
     --warning: 38 92% 50%;
-    --info: 199 89% 48%;
+    --warning-foreground: 38 92% 92%;
+    --info: 213 94% 58%;
+    --info-foreground: 213 94% 92%;
+
+    /* Glow effects */
+    --glow-primary: 213 94% 58%;
+    --glow-success: 152 69% 40%;
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 210 20% 95%;
-    --card: 220 20% 12%;
-    --card-foreground: 210 20% 95%;
-    --popover: 220 20% 12%;
-    --popover-foreground: 210 20% 95%;
-    --primary: 45 90% 60%;
-    --primary-foreground: 220 25% 8%;
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 210 20% 95%;
-    --muted: 220 15% 18%;
-    --muted-foreground: 210 10% 65%;
-    --accent: 200 80% 45%;
-    --accent-foreground: 210 20% 95%;
+    --background: 222 47% 5%;
+    --foreground: 210 40% 96%;
+    --card: 222 35% 8%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 35% 8%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 213 94% 58%;
+    --primary-foreground: 222 47% 5%;
+    --secondary: 222 25% 14%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 25% 14%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 222 25% 16%;
+    --accent-foreground: 210 40% 96%;
     --destructive: 0 72% 55%;
-    --destructive-foreground: 210 20% 95%;
-    --border: 220 15% 20%;
-    --input: 220 15% 18%;
-    --ring: 45 90% 60%;
+    --destructive-foreground: 210 40% 96%;
+    --border: 222 20% 14%;
+    --input: 222 25% 12%;
+    --ring: 213 94% 58%;
   }
 }
 
@@ -60,17 +67,58 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
 }
 
 @layer utilities {
-  /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Subtle glow utilities for premium feel */
+  .glow-primary {
+    box-shadow: 0 0 20px -5px hsl(var(--glow-primary) / 0.15);
+  }
+  .glow-success {
+    box-shadow: 0 0 20px -5px hsl(var(--glow-success) / 0.15);
+  }
+
+  /* Glass card effect */
+  .glass {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Subtle gradient border */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.3),
+      transparent 50%,
+      hsl(var(--primary) / 0.1)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Tabular numbers for financial data */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }

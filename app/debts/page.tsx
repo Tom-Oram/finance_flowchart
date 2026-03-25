@@ -103,7 +103,7 @@ export default function DebtsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Debts</h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mt-1">
           Manage your debts and compare payoff strategies
         </p>
       </div>
@@ -607,9 +607,9 @@ export default function DebtsPage() {
               </Card>
 
               <div className="grid md:grid-cols-2 gap-4">
-                <Card className="border-blue-200">
+                <Card className="border-blue-500/30 bg-blue-500/5">
                   <CardHeader>
-                    <CardTitle className="text-blue-700">Avalanche Method</CardTitle>
+                    <CardTitle className="text-blue-400">Avalanche Method</CardTitle>
                     <CardDescription>Highest APR first (minimises interest)</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-2">
@@ -623,16 +623,16 @@ export default function DebtsPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm">Total interest:</span>
-                      <span className="font-semibold text-blue-700">
+                      <span className="font-semibold text-blue-400 tabular-nums">
                         {formatCurrency(comparison.avalanche.totalInterest, state.currency, state.customFxRate)}
                       </span>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="border-purple-200">
+                <Card className="border-purple-500/30 bg-purple-500/5">
                   <CardHeader>
-                    <CardTitle className="text-purple-700">Snowball Method</CardTitle>
+                    <CardTitle className="text-purple-400">Snowball Method</CardTitle>
                     <CardDescription>Smallest balance first (quick wins)</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-2">
@@ -646,7 +646,7 @@ export default function DebtsPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm">Total interest:</span>
-                      <span className="font-semibold text-purple-700">
+                      <span className="font-semibold text-purple-400 tabular-nums">
                         {formatCurrency(comparison.snowball.totalInterest, state.currency, state.customFxRate)}
                       </span>
                     </div>
@@ -654,14 +654,14 @@ export default function DebtsPage() {
                 </Card>
               </div>
 
-              <Card className="border-green-200 bg-green-50/30">
+              <Card className="border-emerald-500/20 bg-emerald-500/5">
                 <CardHeader>
-                  <CardTitle className="text-green-700">Comparison</CardTitle>
+                  <CardTitle className="text-emerald-400">Comparison</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="flex justify-between text-lg">
                     <span>Avalanche saves you:</span>
-                    <span className="font-bold text-green-700">
+                    <span className="font-bold text-emerald-400 tabular-nums">
                       {formatCurrency(Math.abs(comparison.interestSaved), state.currency, state.customFxRate)}
                     </span>
                   </div>

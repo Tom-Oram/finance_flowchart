@@ -95,57 +95,65 @@ export default function BudgetPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Budget</h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mt-1">
           Manage your income, expenses, and savings
         </p>
       </div>
 
       {/* Summary */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Card>
+        <Card className="transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/5 hover:border-emerald-500/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-green-600" />
+            <CardTitle className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
+              <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                <TrendingUp className="h-4 w-4 text-emerald-400" />
+              </div>
               Total Income
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-emerald-400 tabular-nums tracking-tight">
               {formatCurrency(totalIncome, state.currency, state.customFxRate)}
             </div>
-            <p className="text-xs text-muted-foreground">per month</p>
+            <p className="text-xs text-muted-foreground mt-1">per month</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-500/5 hover:border-red-500/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <TrendingDown className="h-4 w-4 text-red-600" />
+            <CardTitle className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
+              <div className="h-8 w-8 rounded-lg bg-red-500/10 flex items-center justify-center">
+                <TrendingDown className="h-4 w-4 text-red-400" />
+              </div>
               Total Outgoings
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-red-600">
+            <div className="text-2xl font-bold text-red-400 tabular-nums tracking-tight">
               {formatCurrency(totalOutgoings, state.currency, state.customFxRate)}
             </div>
-            <p className="text-xs text-muted-foreground">per month (incl. annual)</p>
+            <p className="text-xs text-muted-foreground mt-1">per month (incl. annual)</p>
           </CardContent>
         </Card>
 
-        <Card className={totalIncome - totalOutgoings >= 0 ? 'border-green-200' : 'border-red-200'}>
+        <Card className={`transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
+          totalIncome - totalOutgoings >= 0
+            ? 'hover:shadow-emerald-500/5 hover:border-emerald-500/30'
+            : 'hover:shadow-red-500/5 hover:border-red-500/30'
+        }`}>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Balance</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Balance</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${
-              totalIncome - totalOutgoings >= 0 ? 'text-green-600' : 'text-red-600'
+            <div className={`text-2xl font-bold tabular-nums tracking-tight ${
+              totalIncome - totalOutgoings >= 0 ? 'text-emerald-400' : 'text-red-400'
             }`}>
               {formatCurrency(totalIncome - totalOutgoings, state.currency, state.customFxRate)}
             </div>
-            <p className="text-xs text-muted-foreground">before debt payments</p>
+            <p className="text-xs text-muted-foreground mt-1">before debt payments</p>
           </CardContent>
         </Card>
       </div>
@@ -174,7 +182,7 @@ export default function BudgetPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-3 border rounded-lg bg-accent/50">
+              <div className="flex items-center justify-between p-4 border border-border/60 rounded-xl bg-accent/30">
                 <div className="space-y-0.5">
                   <Label htmlFor="taxMode">Use Gross Income & Auto-Calculate Tax</Label>
                   <p className="text-xs text-muted-foreground">
@@ -249,10 +257,12 @@ export default function BudgetPage() {
                   </div>
 
                   {state.income.primaryGross && state.income.primaryGross > 0 && (
-                    <div className="p-4 border rounded-lg bg-primary/5">
+                    <div className="p-5 border border-primary/20 rounded-xl bg-primary/5">
                       <div className="flex items-center gap-2 mb-3">
-                        <Calculator className="h-4 w-4" />
-                        <h4 className="font-semibold">Tax Calculation</h4>
+                        <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Calculator className="h-3.5 w-3.5 text-primary" />
+                        </div>
+                        <h4 className="font-semibold text-sm">Tax Calculation</h4>
                       </div>
                       {(() => {
                         const breakdown = getTaxBreakdown(state.income.primaryGross, state.taxConfig)
@@ -260,27 +270,27 @@ export default function BudgetPage() {
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between">
                               <span className="text-muted-foreground">Annual Gross:</span>
-                              <span className="font-medium">{formatCurrency(breakdown.grossAnnual, state.currency, state.customFxRate)}</span>
+                              <span className="font-medium tabular-nums">{formatCurrency(breakdown.grossAnnual, state.currency, state.customFxRate)}</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-muted-foreground">Income Tax:</span>
-                              <span className="text-red-600">-{formatCurrency(breakdown.incomeTax, state.currency, state.customFxRate)}</span>
+                              <span className="text-red-400 tabular-nums">-{formatCurrency(breakdown.incomeTax, state.currency, state.customFxRate)}</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-muted-foreground">National Insurance:</span>
-                              <span className="text-red-600">-{formatCurrency(breakdown.nationalInsurance, state.currency, state.customFxRate)}</span>
+                              <span className="text-red-400 tabular-nums">-{formatCurrency(breakdown.nationalInsurance, state.currency, state.customFxRate)}</span>
                             </div>
                             {breakdown.studentLoan > 0 && (
                               <div className="flex justify-between">
                                 <span className="text-muted-foreground">Student Loan:</span>
-                                <span className="text-red-600">-{formatCurrency(breakdown.studentLoan, state.currency, state.customFxRate)}</span>
+                                <span className="text-red-400 tabular-nums">-{formatCurrency(breakdown.studentLoan, state.currency, state.customFxRate)}</span>
                               </div>
                             )}
-                            <div className="pt-2 border-t flex justify-between font-semibold">
+                            <div className="pt-2 border-t border-primary/20 flex justify-between font-semibold">
                               <span>Net Monthly:</span>
-                              <span className="text-green-600">{formatCurrency(breakdown.netMonthly, state.currency, state.customFxRate)}</span>
+                              <span className="text-emerald-400 tabular-nums">{formatCurrency(breakdown.netMonthly, state.currency, state.customFxRate)}</span>
                             </div>
-                            <div className="text-xs text-muted-foreground">
+                            <div className="text-xs text-muted-foreground tabular-nums">
                               Effective tax rate: {breakdown.effectiveTaxRate.toFixed(1)}%
                             </div>
                           </div>
@@ -341,10 +351,9 @@ export default function BudgetPage() {
               <CardDescription>List your regular monthly expenses</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* Existing items */}
               <div className="space-y-2">
                 {state.outgoings.items.map((item) => (
-                  <div key={item.id} className="flex items-center gap-2 p-2 border rounded">
+                  <div key={item.id} className="flex items-center gap-2 p-3 border border-border/60 rounded-xl bg-accent/20">
                     <Input
                       value={item.name}
                       onChange={(e) => updateItem(item.id, 'name', e.target.value)}
@@ -371,6 +380,7 @@ export default function BudgetPage() {
                       size="icon"
                       variant="ghost"
                       onClick={() => removeItem(item.id)}
+                      className="text-muted-foreground hover:text-destructive"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -378,8 +388,7 @@ export default function BudgetPage() {
                 ))}
               </div>
 
-              {/* Add new item */}
-              <div className="flex items-end gap-2 pt-4 border-t">
+              <div className="flex items-end gap-2 pt-4 border-t border-border/60">
                 <div className="flex-1 space-y-2">
                   <Label htmlFor="newItemName">Name</Label>
                   <Input
@@ -424,21 +433,21 @@ export default function BudgetPage() {
               <CardDescription>One-off yearly expenses (amortized monthly)</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* Existing annual costs */}
               <div className="space-y-2">
                 {state.outgoings.annualCosts.map((item) => (
-                  <div key={item.id} className="flex items-center gap-2 p-2 border rounded">
+                  <div key={item.id} className="flex items-center gap-2 p-3 border border-border/60 rounded-xl bg-accent/20">
                     <span className="flex-1">{item.name}</span>
-                    <span className="text-sm text-muted-foreground w-32">
+                    <span className="text-sm text-muted-foreground w-32 tabular-nums">
                       {formatCurrency(item.amount, state.currency, state.customFxRate)}/year
                     </span>
-                    <span className="text-sm font-medium w-32">
+                    <span className="text-sm font-medium w-32 tabular-nums">
                       {formatCurrency(item.amount / 12, state.currency, state.customFxRate)}/mo
                     </span>
                     <Button
                       size="icon"
                       variant="ghost"
                       onClick={() => removeAnnualCost(item.id)}
+                      className="text-muted-foreground hover:text-destructive"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -446,8 +455,7 @@ export default function BudgetPage() {
                 ))}
               </div>
 
-              {/* Add new annual cost */}
-              <div className="flex items-end gap-2 pt-4 border-t">
+              <div className="flex items-end gap-2 pt-4 border-t border-border/60">
                 <div className="flex-1 space-y-2">
                   <Label htmlFor="newAnnualName">Name</Label>
                   <Input
@@ -509,7 +517,7 @@ export default function BudgetPage() {
                   value={state.savings.initialEFMonths}
                   onChange={(e) => updateSavings({ initialEFMonths: parseInt(e.target.value) })}
                 />
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground tabular-nums">
                   Target: {formatCurrency(essentialOutgoings * state.savings.initialEFMonths, state.currency, state.customFxRate)}
                 </p>
               </div>
@@ -526,7 +534,7 @@ export default function BudgetPage() {
                   value={state.savings.emergencyFundMonths}
                   onChange={(e) => updateSavings({ emergencyFundMonths: parseInt(e.target.value) })}
                 />
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground tabular-nums">
                   Target: {formatCurrency(essentialOutgoings * state.savings.emergencyFundMonths, state.currency, state.customFxRate)}
                 </p>
               </div>
@@ -673,25 +681,25 @@ export default function BudgetPage() {
                 </Alert>
               )}
 
-              <div className="pt-4 border-t space-y-4">
+              <div className="pt-4 border-t border-border/60 space-y-4">
                 <h3 className="font-semibold">Budget Health Summary</h3>
                 <div className="grid gap-3">
-                  <div className="p-3 border rounded-lg">
+                  <div className="p-4 border border-border/60 rounded-xl bg-accent/20">
                     <div className="text-sm font-medium">Household Type</div>
                     <div className="text-sm text-muted-foreground capitalize">{state.householdType}</div>
                   </div>
-                  <div className="p-3 border rounded-lg">
+                  <div className="p-4 border border-border/60 rounded-xl bg-accent/20">
                     <div className="text-sm font-medium">Monthly Balance</div>
-                    <div className={`text-sm font-semibold ${
-                      totalIncome - totalOutgoings >= 0 ? 'text-green-600' : 'text-red-600'
+                    <div className={`text-sm font-semibold tabular-nums ${
+                      totalIncome - totalOutgoings >= 0 ? 'text-emerald-400' : 'text-red-400'
                     }`}>
                       {formatCurrency(totalIncome - totalOutgoings, state.currency, state.customFxRate)}
                     </div>
                     <div className="text-xs text-muted-foreground">Before debt payments</div>
                   </div>
-                  <div className="p-3 border rounded-lg">
+                  <div className="p-4 border border-border/60 rounded-xl bg-accent/20">
                     <div className="text-sm font-medium">Emergency Fund Coverage</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-muted-foreground tabular-nums">
                       {essentialOutgoings > 0
                         ? `${(state.savings.currentCash / essentialOutgoings).toFixed(1)} months of ${state.savings.emergencyFundMonths} target`
                         : 'Set essential outgoings to calculate'}
@@ -777,7 +785,7 @@ export default function BudgetPage() {
                 <div className="space-y-0.5">
                   <Label htmlFor="postgraduateLoan">Postgraduate Loan</Label>
                   <p className="text-sm text-muted-foreground">
-                    Do you have a postgraduate loan? (6% above £21,000 threshold)
+                    Do you have a postgraduate loan? (6% above threshold)
                   </p>
                 </div>
                 <Switch
@@ -787,7 +795,7 @@ export default function BudgetPage() {
                 />
               </div>
 
-              <div className="pt-4 border-t space-y-4">
+              <div className="pt-4 border-t border-border/60 space-y-4">
                 <h3 className="font-semibold">Self-Assessment</h3>
 
                 <div className="flex items-center justify-between">
@@ -824,10 +832,10 @@ export default function BudgetPage() {
                     <AlertDescription>
                       <strong>You may need to file a Self-Assessment tax return.</strong>
                       <div className="mt-2 space-y-1 text-xs">
-                        <p>• Register by 5 October after the end of the tax year</p>
-                        <p>• Online deadline: 31 January</p>
-                        <p>• Paper deadline: 31 October</p>
-                        <p>• Visit gov.uk/self-assessment-tax-returns for more information</p>
+                        <p>Register by 5 October after the end of the tax year</p>
+                        <p>Online deadline: 31 January</p>
+                        <p>Paper deadline: 31 October</p>
+                        <p>Visit gov.uk/self-assessment-tax-returns for more information</p>
                       </div>
                     </AlertDescription>
                   </Alert>

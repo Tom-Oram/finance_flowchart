@@ -16,14 +16,14 @@ export function AnimatedCard({ children, className, delay = 0, hover = true }: A
     <div
       className={cn(
         "animate-in fade-in slide-in-from-bottom-4",
-        hover && "transition-all duration-300 hover:scale-[1.02] hover:shadow-lg",
+        hover && "transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5",
         className
       )}
       style={{ animationDelay: `${delay}ms`, animationFillMode: 'both' }}
     >
       <Card className={cn(
-        "h-full transition-colors",
-        hover && "hover:border-primary/50"
+        "h-full transition-colors duration-300",
+        hover && "hover:border-primary/30"
       )}>
         {children}
       </Card>

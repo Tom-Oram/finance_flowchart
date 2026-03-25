@@ -130,7 +130,7 @@ export default function GraphsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Graphs</h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mt-1">
           Visual comparison of debt payoff strategies
         </p>
       </div>
@@ -175,7 +175,7 @@ export default function GraphsPage() {
         <CardContent>
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={balanceData}>
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 20% 14%)" />
               <XAxis
                 dataKey="date"
                 tick={{ fontSize: 12 }}
@@ -192,12 +192,12 @@ export default function GraphsPage() {
                   formatCurrency(value, state.currency, state.customFxRate)
                 }
                 contentStyle={{
-                  backgroundColor: 'hsl(var(--popover))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '6px',
-                  color: 'hsl(var(--popover-foreground))'
+                  backgroundColor: 'hsl(222 35% 8%)',
+                  border: '1px solid hsl(222 20% 14%)',
+                  borderRadius: '8px',
+                  color: 'hsl(210 40% 96%)'
                 }}
-                labelStyle={{ color: 'hsl(var(--popover-foreground))' }}
+                labelStyle={{ color: 'hsl(210 40% 96%)' }}
               />
               <Legend />
               <Line
@@ -231,7 +231,7 @@ export default function GraphsPage() {
         <CardContent>
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={interestData}>
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 20% 14%)" />
               <XAxis
                 dataKey="date"
                 tick={{ fontSize: 12 }}
@@ -248,12 +248,12 @@ export default function GraphsPage() {
                   formatCurrency(value, state.currency, state.customFxRate)
                 }
                 contentStyle={{
-                  backgroundColor: 'hsl(var(--popover))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '6px',
-                  color: 'hsl(var(--popover-foreground))'
+                  backgroundColor: 'hsl(222 35% 8%)',
+                  border: '1px solid hsl(222 20% 14%)',
+                  borderRadius: '8px',
+                  color: 'hsl(210 40% 96%)'
                 }}
-                labelStyle={{ color: 'hsl(var(--popover-foreground))' }}
+                labelStyle={{ color: 'hsl(210 40% 96%)' }}
               />
               <Legend />
               <Line
@@ -285,7 +285,7 @@ export default function GraphsPage() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={comparisonData}>
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 20% 14%)" />
                 <XAxis dataKey="name" />
                 <YAxis
                   tickFormatter={(value) =>
@@ -317,7 +317,7 @@ export default function GraphsPage() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={comparisonData}>
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 20% 14%)" />
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip
@@ -336,9 +336,9 @@ export default function GraphsPage() {
         </Card>
       </div>
 
-      <Card className="border-green-200 bg-green-50/30">
+      <Card className="border-emerald-500/20 bg-emerald-500/5">
         <CardHeader>
-          <CardTitle className="text-green-700">Summary</CardTitle>
+          <CardTitle className="text-emerald-400">Summary</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="grid md:grid-cols-2 gap-4">
@@ -372,7 +372,7 @@ export default function GraphsPage() {
             </div>
           </div>
           <div className="pt-4 border-t">
-            <p className="text-lg font-semibold text-green-700">
+            <p className="text-lg font-semibold text-emerald-400 tabular-nums">
               Using Avalanche saves you{' '}
               {formatCurrency(Math.abs(comparison.interestSaved), state.currency, state.customFxRate)}{' '}
               in interest

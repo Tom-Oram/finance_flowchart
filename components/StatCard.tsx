@@ -31,27 +31,27 @@ export function StatCard({
       className="animate-in fade-in slide-in-from-bottom-4"
       style={{ animationDelay: `${delay}ms`, animationFillMode: 'both' }}
     >
-      <Card className="overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-primary/50">
+      <Card className="overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">{title}</CardTitle>
-          <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center transition-transform hover:scale-110">
-            <Icon className="h-5 w-5 text-primary" />
+          <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
+          <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+            <Icon className="h-4 w-4 text-primary" />
           </div>
         </CardHeader>
         <CardContent>
-          <div className={cn("text-2xl font-bold mb-1", valueClassName)}>
+          <div className={cn("text-2xl font-bold tabular-nums tracking-tight", valueClassName)}>
             {value}
           </div>
           {subtitle && (
-            <p className="text-xs text-muted-foreground">{subtitle}</p>
+            <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
           )}
           {trend && trendValue && (
             <div className="flex items-center gap-1 mt-2">
               <span className={cn(
-                "text-xs font-semibold",
-                trend === 'up' && "text-green-600",
-                trend === 'down' && "text-red-600",
-                trend === 'neutral' && "text-gray-600"
+                "text-xs font-semibold tabular-nums",
+                trend === 'up' && "text-emerald-400",
+                trend === 'down' && "text-red-400",
+                trend === 'neutral' && "text-muted-foreground"
               )}>
                 {trend === 'up' && '↑'}
                 {trend === 'down' && '↓'}

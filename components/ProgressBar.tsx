@@ -31,9 +31,9 @@ export function ProgressBar({
 
   const colorClasses = {
     primary: 'bg-primary',
-    green: 'bg-green-600',
-    red: 'bg-red-600',
-    yellow: 'bg-yellow-600'
+    green: 'bg-emerald-500',
+    red: 'bg-red-500',
+    yellow: 'bg-amber-500'
   }
 
   return (

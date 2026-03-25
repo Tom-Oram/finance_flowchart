@@ -2,20 +2,20 @@ import { ExternalLink } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-card mt-12">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-3">
+    <footer className="border-t border-border/50 bg-card/50 mt-12">
+      <div className="container mx-auto px-4 py-10 max-w-7xl">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <h3 className="font-semibold mb-3">Attribution & License</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              This app is based on the{' '}
+            <h3 className="font-semibold mb-3 text-sm uppercase tracking-wider text-muted-foreground">Attribution & License</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+              Based on the{' '}
               <a
                 href="https://ukpersonal.finance/flowchart/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline inline-flex items-center gap-1"
+                className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
               >
-                Wealthcheck
+                UKPF Flowchart
                 <ExternalLink className="h-3 w-3" />
               </a>
               , published under{' '}
@@ -23,7 +23,7 @@ export default function Footer() {
                 href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline inline-flex items-center gap-1"
+                className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
               >
                 CC BY-NC-SA 4.0
                 <ExternalLink className="h-3 w-3" />
@@ -31,70 +31,52 @@ export default function Footer() {
               .
             </p>
             <p className="text-sm text-muted-foreground">
-              This app is non-commercial and share-alike compatible.
+              Non-commercial and share-alike compatible.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-3">Important Disclaimer</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              <strong>This is not financial advice.</strong> The information provided is for
-              educational purposes only. Always do your own research and consider seeking
-              professional advice for your specific circumstances.
+            <h3 className="font-semibold mb-3 text-sm uppercase tracking-wider text-muted-foreground">Disclaimer</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              <strong className="text-foreground/80">This is not financial advice.</strong> For educational purposes only. Always do your own research and consider professional advice for your circumstances.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-3">Problem Debt Support</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              If you are struggling with debt, free help is available:
+            <h3 className="font-semibold mb-3 text-sm uppercase tracking-wider text-muted-foreground">Debt Support</h3>
+            <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+              Free help is available if you are struggling:
             </p>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li>
-                <a
-                  href="https://www.stepchange.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline inline-flex items-center gap-1"
-                >
-                  StepChange Debt Charity
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.nationaldebtline.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline inline-flex items-center gap-1"
-                >
-                  National Debtline
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.citizensadvice.org.uk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline inline-flex items-center gap-1"
-                >
-                  Citizens Advice
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
+            <ul className="text-sm space-y-2">
+              {[
+                { href: 'https://www.stepchange.org/', label: 'StepChange Debt Charity' },
+                { href: 'https://www.nationaldebtline.org/', label: 'National Debtline' },
+                { href: 'https://www.citizensadvice.org.uk/', label: 'Citizens Advice' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
+                  >
+                    {link.label}
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t text-center text-sm text-muted-foreground">
+        <div className="mt-10 pt-6 border-t border-border/50 text-center text-sm text-muted-foreground">
           <p>
             For more information, visit{' '}
             <a
               href="https://ukpersonal.finance/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary hover:text-primary/80 transition-colors"
             >
               ukpersonal.finance
             </a>

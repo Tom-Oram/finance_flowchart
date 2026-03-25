@@ -121,26 +121,37 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       {/* Hero Section */}
-      <div className="text-center space-y-6 py-12 animate-in fade-in slide-in-from-bottom-8 duration-700">
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-          Take Control of Your Finances
-        </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-          Map your personal finances onto the UKPF flowchart journey. Track debts,
-          build emergency funds, and plan your financial future.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
+      <div className="text-center space-y-8 py-16 animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div className="space-y-4">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <span className="bg-gradient-to-r from-blue-400 via-primary to-cyan-400 bg-clip-text text-transparent">
+              Take Control
+            </span>
+            <br />
+            <span className="text-foreground">of Your Finances</span>
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Map your personal finances onto the UKPF flowchart. Track debts,
+            build emergency funds, and plan your financial future.
+          </p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
           <Button
             size="lg"
-            className="gap-2 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
+            className="gap-2 text-base px-8 py-6 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
             onClick={() => setWizardOpen(true)}
           >
             <TrendingUp className="h-5 w-5" />
             Get Started Free
           </Button>
-          <Button size="lg" variant="outline" onClick={loadExampleData} className="text-lg px-8 py-6">
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={loadExampleData}
+            className="text-base px-8 py-6 border-border/60 hover:border-primary/40"
+          >
             Try Example Data
           </Button>
         </div>
@@ -149,10 +160,10 @@ export default function HomePage() {
 
       {/* Disclaimer */}
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-700" style={{ animationDelay: '100ms' }}>
-        <Alert className="bg-amber-950/30 border-amber-800/50">
+        <Alert className="bg-amber-950/20 border-amber-800/30">
           <AlertTriangle className="h-4 w-4 text-amber-400" />
           <AlertTitle className="text-amber-300">Important Disclaimer</AlertTitle>
-          <AlertDescription className="text-amber-200/80">
+          <AlertDescription className="text-amber-200/70">
             This is <strong>not financial advice</strong>. The information provided is for
             educational purposes only. Always do your own research and consider seeking
             professional advice for your specific circumstances.
@@ -165,13 +176,13 @@ export default function HomePage() {
         {features.map((feature, idx) => (
           <AnimatedCard key={feature.title} delay={idx * 100}>
             <CardHeader>
-              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center mb-4">
-                <feature.icon className="h-6 w-6 text-background" />
+              <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                <feature.icon className="h-5 w-5 text-primary" />
               </div>
               <CardTitle className="text-lg">{feature.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">{feature.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </CardContent>
           </AnimatedCard>
         ))}
@@ -181,8 +192,8 @@ export default function HomePage() {
       <div className="grid md:grid-cols-2 gap-6">
         <AnimatedCard delay={200}>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-600" />
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <CheckCircle2 className="h-5 w-5 text-emerald-400" />
               What This App Does
             </CardTitle>
           </CardHeader>
@@ -197,10 +208,10 @@ export default function HomePage() {
                 'Tracks emergency fund progress month-over-month',
               ].map((item, idx) => (
                 <li key={idx} className="flex gap-3 items-start">
-                  <div className="h-6 w-6 rounded-full bg-green-950/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <div className="h-5 w-5 rounded-md bg-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                   </div>
-                  <span className="text-sm">{item}</span>
+                  <span className="text-sm text-muted-foreground">{item}</span>
                 </li>
               ))}
             </ul>
@@ -209,8 +220,8 @@ export default function HomePage() {
 
         <AnimatedCard delay={300}>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <PiggyBank className="h-5 w-5 text-blue-600" />
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Shield className="h-5 w-5 text-primary" />
               Privacy & Data
             </CardTitle>
           </CardHeader>
@@ -225,10 +236,10 @@ export default function HomePage() {
                 'Built with open banking standards in mind',
               ].map((item, idx) => (
                 <li key={idx} className="flex gap-3 items-start">
-                  <div className="h-6 w-6 rounded-full bg-blue-950/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Shield className="h-4 w-4 text-blue-400" />
+                  <div className="h-5 w-5 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Shield className="h-3.5 w-3.5 text-primary" />
                   </div>
-                  <span className="text-sm">{item}</span>
+                  <span className="text-sm text-muted-foreground">{item}</span>
                 </li>
               ))}
             </ul>
@@ -238,57 +249,62 @@ export default function HomePage() {
 
       {/* About UKPF Flowchart */}
       <AnimatedCard delay={400}>
-        <div className="bg-gradient-to-br from-primary/10 to-cyan-500/10 p-1 rounded-lg border border-primary/20">
-          <CardHeader>
-            <CardTitle>About the UKPF Flowchart</CardTitle>
-            <CardDescription>
-              This app is based on the community-created flowchart from r/UKPersonalFinance
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-sm">
-              The UKPF flowchart is a decision tree that helps you prioritise your financial
-              goals. It guides you through essential steps like dealing with problem debt,
-              building emergency funds, clearing expensive debts, and eventually investing for
-              the long term.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://ukpersonal.finance/flowchart/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex"
-              >
-                <Button variant="outline" className="gap-2">
-                  View Original Flowchart
-                  <ExternalLink className="h-4 w-4" />
-                </Button>
-              </a>
-              <a
-                href="https://flowchart.ukpersonal.finance/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex"
-              >
-                <Button variant="outline" className="gap-2">
-                  Interactive Flowchart
-                  <ExternalLink className="h-4 w-4" />
-                </Button>
-              </a>
-            </div>
-          </CardContent>
+        <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent p-px">
+          <div className="rounded-[11px] bg-card p-0">
+            <CardHeader>
+              <CardTitle>About the UKPF Flowchart</CardTitle>
+              <CardDescription>
+                Based on the community-created flowchart from r/UKPersonalFinance
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                The UKPF flowchart is a decision tree that helps you prioritise your financial
+                goals. It guides you through essential steps like dealing with problem debt,
+                building emergency funds, clearing expensive debts, and eventually investing for
+                the long term.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://ukpersonal.finance/flowchart/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex"
+                >
+                  <Button variant="outline" className="gap-2 border-border/60">
+                    View Original Flowchart
+                    <ExternalLink className="h-4 w-4" />
+                  </Button>
+                </a>
+                <a
+                  href="https://flowchart.ukpersonal.finance/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex"
+                >
+                  <Button variant="outline" className="gap-2 border-border/60">
+                    Interactive Flowchart
+                    <ExternalLink className="h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
+            </CardContent>
+          </div>
         </div>
       </AnimatedCard>
 
       {/* CTA Section */}
-      <div className="text-center space-y-6 py-12 bg-gradient-to-r from-primary/10 via-cyan-500/10 to-blue-500/10 rounded-2xl border border-primary/20 animate-in fade-in slide-in-from-bottom-4 duration-700" style={{ animationDelay: '500ms' }}>
-        <h2 className="text-3xl font-bold">Ready to take control?</h2>
+      <div
+        className="text-center space-y-6 py-16 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-transparent to-cyan-500/5 animate-in fade-in slide-in-from-bottom-4 duration-700"
+        style={{ animationDelay: '500ms' }}
+      >
+        <h2 className="text-3xl font-bold tracking-tight">Ready to take control?</h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Start your financial journey today. Track your progress, compare strategies, and achieve your goals.
         </p>
         <Button
           size="lg"
-          className="gap-2 text-lg px-8 py-6"
+          className="gap-2 text-base px-8 py-6 shadow-lg shadow-primary/20"
           onClick={() => setWizardOpen(true)}
         >
           Start Your Journey

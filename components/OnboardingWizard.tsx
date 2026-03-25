@@ -277,7 +277,7 @@ export function OnboardingWizard({ open, onClose }: OnboardingWizardProps) {
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                   You're All Set!
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">

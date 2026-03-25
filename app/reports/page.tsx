@@ -65,9 +65,9 @@ export default function ReportsPage() {
   }
 
   const TrendIcon = ({ trend }: { trend: 'improving' | 'worsening' | 'stable' }) => {
-    if (trend === 'improving') return <TrendingUp className="h-5 w-5 text-green-600" />
-    if (trend === 'worsening') return <TrendingDown className="h-5 w-5 text-red-600" />
-    return <Minus className="h-5 w-5 text-gray-400" />
+    if (trend === 'improving') return <TrendingUp className="h-5 w-5 text-emerald-400" />
+    if (trend === 'worsening') return <TrendingDown className="h-5 w-5 text-red-400" />
+    return <Minus className="h-5 w-5 text-muted-foreground" />
   }
 
   const handleCreateSnapshot = () => {
@@ -86,7 +86,7 @@ export default function ReportsPage() {
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Performance Reports</h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground mt-1">
             Track your financial progress month-over-month
           </p>
         </div>
@@ -135,9 +135,9 @@ export default function ReportsPage() {
 
       {/* Milestones */}
       {report && report.milestones.achieved.length > 0 && (
-        <Card className="border-green-800/50 bg-green-950/20">
+        <Card className="border-emerald-500/20 bg-emerald-500/5">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-green-400">
+            <CardTitle className="flex items-center gap-2 text-emerald-400">
               <Award className="h-5 w-5" />
               Milestones Achieved!
             </CardTitle>
@@ -145,7 +145,7 @@ export default function ReportsPage() {
           <CardContent>
             <ul className="space-y-2">
               {report.milestones.achieved.map((milestone, idx) => (
-                <li key={idx} className="flex items-center gap-2 text-green-300">
+                <li key={idx} className="flex items-center gap-2 text-emerald-300">
                   <Award className="h-4 w-4" />
                   <span className="font-medium">{milestone}</span>
                 </li>
@@ -170,7 +170,7 @@ export default function ReportsPage() {
               <div className="flex items-center gap-2 text-xs">
                 <span className={cn(
                   "font-medium",
-                  report.changes.debtChange < 0 ? "text-green-600" : report.changes.debtChange > 0 ? "text-red-600" : "text-gray-500"
+                  report.changes.debtChange < 0 ? "text-emerald-400" : report.changes.debtChange > 0 ? "text-red-400" : "text-muted-foreground"
                 )}>
                   {report.changes.debtChange < 0 ? '↓' : report.changes.debtChange > 0 ? '↑' : '→'}
                   {' '}
@@ -195,7 +195,7 @@ export default function ReportsPage() {
               <div className="flex items-center gap-2 text-xs">
                 <span className={cn(
                   "font-medium",
-                  report.changes.savingsChange > 0 ? "text-green-600" : report.changes.savingsChange < 0 ? "text-red-600" : "text-gray-500"
+                  report.changes.savingsChange > 0 ? "text-emerald-400" : report.changes.savingsChange < 0 ? "text-red-400" : "text-muted-foreground"
                 )}>
                   {report.changes.savingsChange > 0 ? '↑' : report.changes.savingsChange < 0 ? '↓' : '→'}
                   {' '}
@@ -216,14 +216,14 @@ export default function ReportsPage() {
             <CardContent>
               <div className={cn(
                 "text-2xl font-bold",
-                (report.currentMonth.totalSavings - report.currentMonth.totalDebt) >= 0 ? "text-green-600" : "text-red-600"
+                (report.currentMonth.totalSavings - report.currentMonth.totalDebt) >= 0 ? "text-emerald-400" : "text-red-400"
               )}>
                 {formatCurrency(report.currentMonth.totalSavings - report.currentMonth.totalDebt, state.currency, state.customFxRate)}
               </div>
               <div className="flex items-center gap-2 text-xs">
                 <span className={cn(
                   "font-medium",
-                  report.changes.netWorthChange > 0 ? "text-green-600" : report.changes.netWorthChange < 0 ? "text-red-600" : "text-gray-500"
+                  report.changes.netWorthChange > 0 ? "text-emerald-400" : report.changes.netWorthChange < 0 ? "text-red-400" : "text-muted-foreground"
                 )}>
                   {report.changes.netWorthChange > 0 ? '↑' : report.changes.netWorthChange < 0 ? '↓' : '→'}
                   {' '}
@@ -269,13 +269,22 @@ export default function ReportsPage() {
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={trendData}>
-                  <CartesianGrid strokeDasharray="3 3" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 20% 14%)" />
                   <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                   <YAxis tick={{ fontSize: 12 }} tickFormatter={(value) => formatCurrency(value, state.currency, state.customFxRate)} />
-                  <Tooltip formatter={(value: number) => formatCurrency(value, state.currency, state.customFxRate)} />
+                  <Tooltip
+                    formatter={(value: number) => formatCurrency(value, state.currency, state.customFxRate)}
+                    contentStyle={{
+                      backgroundColor: 'hsl(222 35% 8%)',
+                      border: '1px solid hsl(222 20% 14%)',
+                      borderRadius: '8px',
+                      color: 'hsl(210 40% 96%)'
+                    }}
+                    labelStyle={{ color: 'hsl(210 40% 96%)' }}
+                  />
                   <Legend />
-                  <Line type="monotone" dataKey="debt" stroke="#ef4444" strokeWidth={2} name="Total Debt" />
-                  <Line type="monotone" dataKey="savings" stroke="#22c55e" strokeWidth={2} name="Total Savings" />
+                  <Line type="monotone" dataKey="debt" stroke="#f87171" strokeWidth={2} name="Total Debt" />
+                  <Line type="monotone" dataKey="savings" stroke="#34d399" strokeWidth={2} name="Total Savings" />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>
@@ -289,10 +298,19 @@ export default function ReportsPage() {
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={trendData}>
-                  <CartesianGrid strokeDasharray="3 3" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 20% 14%)" />
                   <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                   <YAxis tick={{ fontSize: 12 }} tickFormatter={(value) => formatCurrency(value, state.currency, state.customFxRate)} />
-                  <Tooltip formatter={(value: number) => formatCurrency(value, state.currency, state.customFxRate)} />
+                  <Tooltip
+                    formatter={(value: number) => formatCurrency(value, state.currency, state.customFxRate)}
+                    contentStyle={{
+                      backgroundColor: 'hsl(222 35% 8%)',
+                      border: '1px solid hsl(222 20% 14%)',
+                      borderRadius: '8px',
+                      color: 'hsl(210 40% 96%)'
+                    }}
+                    labelStyle={{ color: 'hsl(210 40% 96%)' }}
+                  />
                   <Legend />
                   <Line
                     type="monotone"
@@ -314,12 +332,21 @@ export default function ReportsPage() {
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={trendData}>
-                  <CartesianGrid strokeDasharray="3 3" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 20% 14%)" />
                   <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                   <YAxis tick={{ fontSize: 12 }} tickFormatter={(value) => formatCurrency(value, state.currency, state.customFxRate)} />
-                  <Tooltip formatter={(value: number) => formatCurrency(value, state.currency, state.customFxRate)} />
+                  <Tooltip
+                    formatter={(value: number) => formatCurrency(value, state.currency, state.customFxRate)}
+                    contentStyle={{
+                      backgroundColor: 'hsl(222 35% 8%)',
+                      border: '1px solid hsl(222 20% 14%)',
+                      borderRadius: '8px',
+                      color: 'hsl(210 40% 96%)'
+                    }}
+                    labelStyle={{ color: 'hsl(210 40% 96%)' }}
+                  />
                   <Legend />
-                  <Bar dataKey="surplus" fill="#8b5cf6" name="Monthly Surplus" />
+                  <Bar dataKey="surplus" fill="#a78bfa" name="Monthly Surplus" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -341,7 +368,7 @@ export default function ReportsPage() {
             <ul className="space-y-2">
               {report.milestones.upcoming.map((milestone, idx) => (
                 <li key={idx} className="flex items-center gap-2 text-sm">
-                  <Target className="h-4 w-4 text-blue-600" />
+                  <Target className="h-4 w-4 text-primary" />
                   <span>{milestone}</span>
                 </li>
               ))}

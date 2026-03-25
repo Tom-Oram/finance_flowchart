@@ -38,74 +38,82 @@ export default function DashboardPage() {
   const currentStep = flowchart.allSteps.find((s) => s.id === flowchart.currentStepId)
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mt-1">
           Your current position on the UKPF flowchart journey
         </p>
       </div>
 
       {/* Key Metrics */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Monthly Surplus</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground">Monthly Surplus</CardTitle>
+            <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+              <TrendingUp className="h-4 w-4 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className={cn(
-              "text-2xl font-bold",
-              surplus >= 0 ? "text-green-600" : "text-red-600"
+              "text-2xl font-bold tabular-nums tracking-tight",
+              surplus >= 0 ? "text-emerald-400" : "text-red-400"
             )}>
               {formatCurrency(surplus, state.currency, state.customFxRate)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground mt-1">
               Income minus expenses and minimums
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Debt</CardTitle>
-            <CreditCard className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground">Total Debt</CardTitle>
+            <div className="h-9 w-9 rounded-lg bg-red-500/10 flex items-center justify-center">
+              <CreditCard className="h-4 w-4 text-red-400" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold tabular-nums tracking-tight">
               {formatCurrency(totalDebt, state.currency, state.customFxRate)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground mt-1">
               {state.debts.length} debt{state.debts.length !== 1 ? 's' : ''}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Cash Savings</CardTitle>
-            <Wallet className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground">Cash Savings</CardTitle>
+            <div className="h-9 w-9 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+              <Wallet className="h-4 w-4 text-emerald-400" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold tabular-nums tracking-tight">
               {formatCurrency(state.savings.currentCash, state.currency, state.customFxRate)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground mt-1">
               Accessible emergency fund
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">EF Months</CardTitle>
-            <PiggyBank className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground">EF Months</CardTitle>
+            <div className="h-9 w-9 rounded-lg bg-amber-500/10 flex items-center justify-center">
+              <PiggyBank className="h-4 w-4 text-amber-400" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold tabular-nums tracking-tight">
               {efMonthsCovered.toFixed(1)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground mt-1">
               Target: {state.savings.emergencyFundMonths} months
             </p>
           </CardContent>
@@ -119,18 +127,19 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle className="flex items-center gap-2">
-                  <Target className="h-5 w-5" />
+                  <Target className="h-5 w-5 text-primary" />
                   Priority Target Debt
                 </CardTitle>
-                <CardDescription>
-                  Recommended debt to focus extra payments on based on your chosen method
+                <CardDescription className="mt-1">
+                  Recommended debt to focus extra payments on
                 </CardDescription>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-1.5">
                 <Button
                   variant={debtStrategy === 'avalanche' ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setDebtStrategy('avalanche')}
+                  className={debtStrategy !== 'avalanche' ? 'border-border/60' : ''}
                 >
                   Avalanche
                 </Button>
@@ -138,6 +147,7 @@ export default function DashboardPage() {
                   variant={debtStrategy === 'snowball' ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setDebtStrategy('snowball')}
+                  className={debtStrategy !== 'snowball' ? 'border-border/60' : ''}
                 >
                   Snowball
                 </Button>
@@ -149,9 +159,7 @@ export default function DashboardPage() {
               const payoffDebts = filterPayoffDebts(state.debts)
               let targetDebt: Debt | undefined
 
-              // Use selected strategy
               if (debtStrategy === 'avalanche') {
-                // Highest APR first
                 const sorted = [...payoffDebts].sort((a, b) => {
                   const aRate = a.hasPromo && a.promoMonthsRemaining > 0 ? 0 : a.apr
                   const bRate = b.hasPromo && b.promoMonthsRemaining > 0 ? 0 : b.apr
@@ -159,7 +167,6 @@ export default function DashboardPage() {
                 })
                 targetDebt = sorted[0]
               } else {
-                // Snowball: Smallest balance first
                 const sorted = [...payoffDebts].sort((a, b) => a.balance - b.balance)
                 targetDebt = sorted[0]
               }
@@ -174,8 +181,8 @@ export default function DashboardPage() {
 
               return (
                 <div className="space-y-4">
-                  <div className="p-4 border rounded-lg bg-accent/50">
-                    <div className="flex items-start justify-between mb-3">
+                  <div className="p-5 border border-border/60 rounded-xl bg-accent/30">
+                    <div className="flex items-start justify-between mb-4">
                       <div>
                         <h4 className="font-semibold text-lg">{targetDebt.name}</h4>
                         <p className="text-sm text-muted-foreground">
@@ -183,10 +190,10 @@ export default function DashboardPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-destructive">
+                        <div className="text-2xl font-bold tabular-nums text-red-400">
                           {formatCurrency(targetDebt.balance, state.currency, state.customFxRate)}
                         </div>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-sm text-muted-foreground tabular-nums">
                           {targetDebt.apr}% APR
                         </div>
                       </div>
@@ -195,7 +202,7 @@ export default function DashboardPage() {
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
                         <Label className="text-xs text-muted-foreground">Minimum Payment</Label>
-                        <p className="font-medium">
+                        <p className="font-medium tabular-nums">
                           {formatCurrency(targetDebt.minimumPayment, state.currency, state.customFxRate)}
                         </p>
                       </div>
@@ -208,28 +215,26 @@ export default function DashboardPage() {
                     </div>
 
                     {surplus > 0 && (
-                      <div className="mt-3 pt-3 border-t">
+                      <div className="mt-4 pt-4 border-t border-border/60">
                         <p className="text-sm text-muted-foreground">
-                          With your {formatCurrency(surplus, state.currency, state.customFxRate)} monthly surplus, you could pay an extra{' '}
-                          {formatCurrency(Math.min(surplus, targetDebt.balance), state.currency, state.customFxRate)} towards this debt.
+                          With your <span className="text-emerald-400 font-medium tabular-nums">{formatCurrency(surplus, state.currency, state.customFxRate)}</span> monthly surplus, you could pay an extra{' '}
+                          <span className="font-medium tabular-nums">{formatCurrency(Math.min(surplus, targetDebt.balance), state.currency, state.customFxRate)}</span> towards this debt.
                           {(() => {
                             const extraPayment = Math.min(surplus, targetDebt.balance)
                             const monthlyPayment = targetDebt.minimumPayment + extraPayment
                             const currentBalance = targetDebt.balance
                             const apr = targetDebt.apr
 
-                            // Calculate months to payoff with minimum payment only
                             let monthsWithMinimum = 0
                             let balanceMin = currentBalance
                             while (balanceMin > 0.01 && monthsWithMinimum < 600) {
                               const interest = (balanceMin * apr) / 100 / 12
                               const principal = targetDebt.minimumPayment - interest
-                              if (principal <= 0) break // Can't pay off with minimum
+                              if (principal <= 0) break
                               balanceMin -= principal
                               monthsWithMinimum++
                             }
 
-                            // Calculate months to payoff with extra payment
                             let monthsWithExtra = 0
                             let balanceExtra = currentBalance
                             while (balanceExtra > 0.01 && monthsWithExtra < 600) {
@@ -245,7 +250,7 @@ export default function DashboardPage() {
                             if (monthsSaved > 0 && monthsWithMinimum < 600) {
                               return (
                                 <> This would allow you to pay off this debt{' '}
-                                  <strong>{monthsSaved} month{monthsSaved !== 1 ? 's' : ''} sooner</strong>.
+                                  <strong className="text-foreground">{monthsSaved} month{monthsSaved !== 1 ? 's' : ''} sooner</strong>.
                                 </>
                               )
                             }
@@ -258,7 +263,7 @@ export default function DashboardPage() {
 
                   <div className="text-xs text-muted-foreground">
                     <p>
-                      <strong>Strategy:</strong> {debtStrategy === 'avalanche'
+                      <strong className="text-foreground/80">Strategy:</strong> {debtStrategy === 'avalanche'
                         ? 'Avalanche pays debts by highest APR first, minimising total interest paid.'
                         : 'Snowball pays smallest debts first, providing psychological wins and motivation.'}
                     </p>
@@ -272,22 +277,24 @@ export default function DashboardPage() {
 
       {/* Current Step */}
       {currentStep && (
-        <Card className="border-primary">
+        <Card className="border-primary/40 glow-primary">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <AlertCircle className="h-5 w-5" />
+              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                <AlertCircle className="h-4 w-4 text-primary" />
+              </div>
               Current Focus: {currentStep.title}
             </CardTitle>
             <CardDescription>{currentStep.description}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold mb-2">Next Actions:</h4>
-              <ul className="space-y-1">
+              <h4 className="font-semibold mb-2 text-sm">Next Actions:</h4>
+              <ul className="space-y-1.5">
                 {flowchart.nextActions.map((action, idx) => (
                   <li key={idx} className="flex gap-2 text-sm">
-                    <span className="text-primary">•</span>
-                    <span>{action}</span>
+                    <span className="text-primary">&#8226;</span>
+                    <span className="text-muted-foreground">{action}</span>
                   </li>
                 ))}
               </ul>
@@ -302,9 +309,9 @@ export default function DashboardPage() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-primary hover:underline"
+                      className="text-sm text-primary hover:text-primary/80 transition-colors"
                     >
-                      {link.text} →
+                      {link.text} &rarr;
                     </a>
                   ))}
                 </div>
@@ -323,7 +330,7 @@ export default function DashboardPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {flowchart.allSteps.map((step, idx) => {
               const isCompleted = flowchart.completedStepIds.includes(step.id)
               const isCurrent = step.id === flowchart.currentStepId
@@ -332,28 +339,35 @@ export default function DashboardPage() {
                 <div
                   key={step.id}
                   className={cn(
-                    "flex gap-4 p-4 rounded-lg border transition-colors",
-                    isCurrent && "border-primary bg-primary/5",
-                    isCompleted && !isCurrent && "border-green-800/50 bg-green-950/20"
+                    "flex gap-4 p-4 rounded-xl border transition-all duration-200",
+                    isCurrent && "border-primary/40 bg-primary/5 glow-primary",
+                    isCompleted && !isCurrent && "border-emerald-500/20 bg-emerald-500/5",
+                    !isCompleted && !isCurrent && "border-border/40"
                   )}
                 >
-                  <div className="flex-shrink-0">
+                  <div className="flex-shrink-0 mt-0.5">
                     {isCompleted ? (
-                      <CheckCircle2 className="h-6 w-6 text-green-400" />
+                      <div className="h-6 w-6 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                      </div>
                     ) : isCurrent ? (
-                      <AlertCircle className="h-6 w-6 text-primary" />
+                      <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                        <AlertCircle className="h-4 w-4 text-primary" />
+                      </div>
                     ) : (
-                      <Circle className="h-6 w-6 text-muted-foreground" />
+                      <div className="h-6 w-6 rounded-full bg-muted flex items-center justify-center">
+                        <Circle className="h-4 w-4 text-muted-foreground/50" />
+                      </div>
                     )}
                   </div>
                   <div className="flex-1 space-y-1">
-                    <div className="font-medium">{step.title}</div>
+                    <div className="font-medium text-sm">{step.title}</div>
                     <div className="text-sm text-muted-foreground">
                       {step.description}
                     </div>
                     {isCurrent && (
                       <div className="text-xs text-primary font-medium mt-2">
-                        ← You are here
+                        You are here
                       </div>
                     )}
                   </div>
@@ -369,7 +383,7 @@ export default function DashboardPage() {
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
             Your expenses exceed your income by{' '}
-            <strong>{formatCurrency(Math.abs(surplus), state.currency, state.customFxRate)}</strong>{' '}
+            <strong className="tabular-nums">{formatCurrency(Math.abs(surplus), state.currency, state.customFxRate)}</strong>{' '}
             per month. Review your budget and consider ways to increase income or reduce
             spending.
           </AlertDescription>
